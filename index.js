@@ -3,10 +3,10 @@ var app = express();
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+// var methodOverride = require('method-override');
 var multer = require('multer');
 
-
+// CORS Definition
 app.use(function (req, res, next) {
     if (req.method === 'OPTIONS') {
         console.log('!OPTIONS');
@@ -26,47 +26,41 @@ app.use(function (req, res, next) {
     next();
 });
 
-
+// Middleware
 app.use(express.static(__dirname + '/storage'));
 app.use('/storage/uploads', express.static(__dirname + '/storage/uploads'));
 app.use(morgan('dev'));
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-
+// DB Connection
 Module = require('./models/storage');
-mongoose.connect("mongodb://localhost:27017/cli");
+mongoose.connect("mongodb://localhost:27017/cli", { useNewUrlParser: true });
 var db = mongoose.connection;
 
-
+// Storage
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './storage/uploads/')
+        cb(null, './storage/uploads/');
     },
     filename: function (req, file, cb) {
 
         var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
     }
 });
 
-
-var uploadMultiple = multer({
-    storage: storage
-}).array('file', 20);
 
 var uploadSingle = multer({
     storage: storage
 }).single('avatar');
 
 
-
 app.get('*', function (req, res) {
     res.sendfile('./storage/uploads');
 });
 
-
-/** API for single file upload */
-app.post('/api/v1/module', function (req, res) {
+// API for single file upload && POST Call
+app.post('/api/v1/modules', function (req, res) {
 
     console.log("hello");
     uploadSingle(req, res, function (err) {
@@ -74,12 +68,11 @@ app.post('/api/v1/module', function (req, res) {
             res.json({ error_code: 1, err_desc: err });
             return;
         }
-        // res.json(req.file);
-        console.log('The filename is ' + res.req.file.filename);
+
         var module = new Module({
-            filename:req.file.filename,
-            originalname:req.file.originalname
-        })
+            filename: req.file.filename,
+            originalname: req.file.originalname
+        });
         Module.addModule(module, function (err, module) {
             if (err) {
                 throw err;
@@ -87,11 +80,11 @@ app.post('/api/v1/module', function (req, res) {
             app.set('json spaces', 2);
             res.json(module);
         });
-    })
+    });
 });
 
 
-
+// Get Call
 app.get('/api/v1/modules', function (req, res) {
     Module.getModule(function (err, module) {
 
@@ -104,12 +97,12 @@ app.get('/api/v1/modules', function (req, res) {
 
 });
 
-app.delete('/api/v1/modules/:_id', function (req, res) {
-    var id = req.params._id;
-    console.log(id,"id")
-    Module.deleteModule(id, function (err, module) {
-        if (err) {            
-            console.log(err,"helo");
+// Delete Call
+app.delete('/api/v1/modules/:originalname', function (req, res) {
+    var originalname = req.params.originalname;
+    Module.deleteModule(originalname, function (err, module) {
+        if (err) {
+            console.log(err);
         }
         app.set('json spaces', 2);
         res.json(module);
@@ -117,10 +110,7 @@ app.delete('/api/v1/modules/:_id', function (req, res) {
 });
 
 
-
-
 app.listen(process.env.PORT || 9004, function () {
     console.log("App listening on port 9004");
 });
 
-module.exports = app;

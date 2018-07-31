@@ -1,5 +1,5 @@
 var mongoose=require('mongoose');
-
+//Schema
 var ModuleSchema=mongoose.Schema({
     filename:{
         type:String,
@@ -12,21 +12,17 @@ var ModuleSchema=mongoose.Schema({
 });
 
 var Module=module.exports=mongoose.model('Module',ModuleSchema);
-
+// Get Call
 module.exports.getModule=function(callback,limit){
     Module.find(callback).limit(limit);
 };
-
+// Post Call
 module.exports.addModule=function(module,callback){
     Module.create(module,callback);
 };
 
-
-module.exports.deleteModule=function(id,callback){
-    var query={_id:id};
+// Delete Call
+module.exports.deleteModule=function(originalname,callback){
+    var query={originalname:originalname};
     Module.deleteOne(query,callback);
 };
-// module.exports.deleteQuestion=function(id,callback){
-//     var query={id:id};
-//     Question.findByIdAndRemove(id,callback);
-// };
