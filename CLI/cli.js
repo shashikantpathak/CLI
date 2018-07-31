@@ -4,9 +4,9 @@ const fetch=require('node-fetch');
 
 
 
-const {
- app
-} = require('./index.js');
+// const {
+//  app
+// } = require('./index.js');
 
 program 
   .version('1.0.0')
@@ -50,6 +50,8 @@ program
   .command('remove <_id>')
   .alias('r')
   .description('Remove a module')
-  .action(_id =>fetch('http://localhost:9004/api/v1/modules/'+ _id))
+  .action(_id =>{fetch('http://localhost:9004/api/v1/modules/'+ _id,{
+    method: 'DELETE',
+})})
 
 program.parse(process.argv);

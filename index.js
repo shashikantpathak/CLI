@@ -108,8 +108,7 @@ app.delete('/api/v1/modules/:_id', function (req, res) {
     var id = req.params._id;
     console.log(id,"id")
     Module.deleteModule(id, function (err, module) {
-        if (err) {
-            
+        if (err) {            
             console.log(err,"helo");
         }
         app.set('json spaces', 2);

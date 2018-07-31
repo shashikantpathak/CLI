@@ -23,7 +23,7 @@ module.exports.addModule=function(module,callback){
 
 
 module.exports.deleteModule=function(id,callback){
-    var query={id:id};
+    var query={_id:id};
     Module.deleteOne(query,callback);
 };
 // module.exports.deleteQuestion=function(id,callback){
