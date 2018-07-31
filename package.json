@@ -8,6 +8,7 @@
   },
   "author": "Shashikant Pathak",
   "license": "ISC",
+  
   "bin": {
     "cpn": "./cli.js"
   },
