@@ -5,7 +5,7 @@ var targz = require('tar.gz');
 
 program
   .version('1.0.0')
-  .description('Module Management System')
+  .description('Client Management System')
 
 
 // Add Command
@@ -14,7 +14,6 @@ program
   .alias('a')
   .description('Add a module')
   .action((modules) => {
-    // File Compressor && POST
     var compress = new targz().compress(__dirname, './' + modules + '.tar.gz',
       function (err) {
         if (err)
@@ -33,7 +32,6 @@ program
       });
   });
 
-// List
 program
   .command('list')
   .alias('l')
@@ -43,7 +41,6 @@ program
     .then(json => console.log(json))
   )
 
-// Delete
 program
   .command('remove <originalname>')
   .alias('r')

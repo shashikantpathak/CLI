@@ -3,7 +3,6 @@ var app = express();
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-// var methodOverride = require('method-override');
 var multer = require('multer');
 
 // CORS Definition
@@ -62,7 +61,6 @@ app.get('*', function (req, res) {
 // API for single file upload && POST Call
 app.post('/api/v1/modules', function (req, res) {
 
-    console.log("hello");
     uploadSingle(req, res, function (err) {
         if (err) {
             res.json({ error_code: 1, err_desc: err });
