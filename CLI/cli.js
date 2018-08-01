@@ -1,11 +1,14 @@
 #!/usr/bin/env node
+'use strict';
+
 const program = require('commander');
 const fetch = require('node-fetch');
-var targz = require('tar.gz');
+const targz = require('tar.gz');
 
 program
   .version('1.0.0')
-  .description('Client Management System')
+  .description('Module Management')
+ 
 
 
 // Add Command
@@ -40,6 +43,7 @@ program
     .then(res => res.json())
     .then(json => console.log(json))
   )
+  
 
 program
   .command('remove <originalname>')

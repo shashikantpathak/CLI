@@ -1,5 +1,5 @@
 {
-  "name": "uploader",
+  "name": "skp",
   "version": "1.0.0",
   "description": "Simlpe CLI for module management",
   "main": "index.js",
@@ -8,9 +8,9 @@
   },
   "author": "Shashikant Pathak",
   "license": "ISC",
-  
+  "preferGlobal": true,
   "bin": {
-    "cpn": "./cli.js"
+    "skp": "./CLI/cli.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var app = express();
 var morgan = require('morgan');
@@ -32,7 +33,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // DB Connection
-Module = require('./models/storage');
+var Module = require('./models/storage');
 mongoose.connect("mongodb://localhost:27017/cli", { useNewUrlParser: true });
 var db = mongoose.connection;
 
