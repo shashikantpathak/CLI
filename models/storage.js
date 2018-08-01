@@ -26,3 +26,8 @@ module.exports.deleteModule=function(originalname,callback){
     var query={originalname:originalname};
     Module.deleteOne(query,callback);
 };
+// Get One Module By Id
+module.exports.getModuleById=function(originalname,callback){
+    var query={originalname: originalname}
+    Module.findOne(query,callback);
+};

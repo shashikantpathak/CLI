@@ -55,4 +55,14 @@ program
     })
   })
 
+  program
+  .command('one <originalname>')
+  .alias('o')
+  .description('Remove a module')
+  .action(originalname => {
+    fetch('http://localhost:9004/api/v1/modules/' + originalname)
+    .then(res => res.json())
+    .then(json => console.log(json))
+  })
+
 program.parse(process.argv);

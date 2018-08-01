@@ -109,6 +109,17 @@ app.delete('/api/v1/modules/:originalname', function (req, res) {
 });
 
 
+app.get('/api/v1/modules/:originalname',function(req,res){
+    Module.getModuleById(req.params.originalname,function(err,module){
+        if(err){
+             throw err;
+        }
+        app.set('json spaces', 2);
+       res.json(module);
+       
+    });
+});
+
 app.listen(process.env.PORT || 9004, function () {
     console.log("App listening on port 9004");
 });
