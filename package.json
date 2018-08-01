@@ -1,5 +1,5 @@
 {
-  "name": "skp",
+  "name": "cli_js",
   "version": "1.0.0",
   "description": "Simlpe CLI for module management",
   "main": "index.js",
@@ -13,6 +13,7 @@
     "skp": "./CLI/cli.js"
   },
   "dependencies": {
+    "@csuraz/module_cli": "^1.0.0",
     "body-parser": "^1.18.2",
     "commander": "*",
     "express": "^4.16.3",
