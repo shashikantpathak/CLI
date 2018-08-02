@@ -70,7 +70,14 @@ app.post('/api/v1/modules', function (req, res) {
 
         var module = new Module({
             filename: req.file.filename,
-            originalname: req.file.originalname
+            originalname: req.file.originalname,
+            filename: req.file.filename,
+            originalname: req.file.originalname,
+            encoding: req.file.encoding,
+            mimetype: req.file.mimetype,
+            destinations: req.file.destination,
+            path: req.file.path,
+            size: req.file.size
         });
         Module.addModule(module, function (err, module) {
             if (err) {
@@ -109,14 +116,14 @@ app.delete('/api/v1/modules/:originalname', function (req, res) {
 });
 
 
-app.get('/api/v1/modules/:originalname',function(req,res){
-    Module.getModuleById(req.params.originalname,function(err,module){
-        if(err){
-             throw err;
+app.get('/api/v1/modules/:originalname', function (req, res) {
+    Module.getModuleById(req.params.originalname, function (err, module) {
+        if (err) {
+            throw err;
         }
         app.set('json spaces', 2);
-       res.json(module);
-       
+        res.json(module);
+
     });
 });
 

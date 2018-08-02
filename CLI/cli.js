@@ -9,15 +9,13 @@ program
   .version('1.0.0')
   .description('Module Management')
  
-
-
 // Add Command
 program
   .command('add <modules>')
   .alias('a')
   .description('Add a module')
   .action((modules) => {
-    var compress = new targz().compress(__dirname, './' + modules + '.tar.gz',
+    var compress = new targz().compress(__dirname, './' + modules + '.tgz',
       function (err) {
         if (err)
           console.log(err);

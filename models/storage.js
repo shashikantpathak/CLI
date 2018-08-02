@@ -8,6 +8,30 @@ var ModuleSchema=mongoose.Schema({
     originalname:{
         type:String,
         required:true
+    },
+    fieldname:{
+        type:String,
+   
+    },
+    encoding:{
+        type:String,
+        
+    },
+    mimetype:{
+        type:String,
+       
+    },
+    destinations:{
+        type:String,
+        
+    },
+    path:{
+        type:String,
+       
+    },
+    size:{
+        type:String,
+       
     }
 });
 

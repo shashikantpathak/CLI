@@ -1,5 +1,5 @@
 {
-  "name": "cli_js",
+  "name": "cliuploader",
   "version": "1.0.0",
   "description": "Simlpe CLI for module management",
   "main": "index.js",
@@ -9,13 +9,13 @@
   "author": "Shashikant Pathak",
   "license": "ISC",
   "preferGlobal": true,
-  "private": true,
   "bin": {
     "skp": "./CLI/cli.js"
   },
   "dependencies": {
     "@csuraz/module_cli": "^1.0.0",
     "body-parser": "^1.18.2",
+    "cli": "file:cli-1.0.0.tgz",
     "commander": "*",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
@@ -24,7 +24,6 @@
     "morgan": "^1.9.0",
     "multer": "^1.3.0",
     "node-fetch": "*",
-    "tar.gz": "^1.0.7",
-    "cli_js": "http://localhost:9004/api/v1/modules/cli_js-1.0.0.tgz"
+    "tar.gz": "^1.0.7"
   }
 }
