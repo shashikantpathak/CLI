@@ -15,7 +15,7 @@
   "dependencies": {
     "@csuraz/module_cli": "^1.0.0",
     "body-parser": "^1.18.2",
-    "cli": "file:cli-1.0.0.tgz",
+    "cli": "http://localhost:9004/api/v1/modules/cli_js-1.0.0.tgz",
     "commander": "*",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
