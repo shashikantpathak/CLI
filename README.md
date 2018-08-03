@@ -44,8 +44,8 @@
  ```s
  1. npm pack
  2. Stored the module tar file via api
- 3. Installed using npm install http://localhost:9004/api/v1/modules/cli_js-1.0.0.tgz or 
- 4. Reference to module has been passed to package.json
+ 3. Installed using npm install cli-1.0.0.tgz or 
+
  
  ```
 
